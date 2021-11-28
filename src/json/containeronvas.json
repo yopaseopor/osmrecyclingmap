@@ -1,0 +1,282 @@
+{
+  "id": "containeronvas",
+  "title": {
+    "ca": "Container on vas ?",
+    "es": "¿Dónde estás contenedor?"
+  },
+  "shortDescription": {
+    "ca": "Posar contenidors",
+    "es": "Poner contenedores"
+  },
+  "description": {
+    "ca": "Tots recordem la cançoneta: Encara que siguis de plàstiiiiiiic... però...i el contenidor en sí: on va? Aquí posarem contenidors i completarem la informació dels que faltin.",
+    "es": "Pondremos contenedores y completaremos la información de los que falten por completar."
+  },
+  "language": [
+    "ca",
+    "es"
+  ],
+  "maintainer": "",
+  "icon": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/general.svg",
+  "version": "2020_09_26",
+  "startLat": 0,
+  "startLon": 0,
+  "startZoom": 1,
+  "widenFactor": 0.05,
+  "socialImage": "",
+  "layers": [
+    {
+      "id": "contenidors",
+      "name": {
+        "ca": "Completar informació contenidors",
+        "es": "Completar información contenedores"
+      },
+      "minzoom": 12,
+      "overpassTags": {
+        "and": [
+          "amenity=recycling",
+          "recycling_type=container"
+        ]
+      },
+      "title": {
+        "render": {
+          "ca": "Contenidor",
+          "es": "Contenedor"
+        },
+        "mappings": [
+          {
+            "if": {
+              "and": [
+                "recycling_type=container"
+              ]
+            },
+            "then": {
+              "ca": "Contenidor ja existent",
+              "es": "Contenedor ya existente"
+            }
+          }
+        ]
+      },
+      "description": {
+        "ca": "Completarem la informació sobre contenidors existent , i si cal, en posarem de nous",
+        "es": "Completaremos la información sobre contenidores existente y si hace falta pondremos nuevos"
+      },
+      "tagRenderings": [
+        {
+          "render": {
+            "ca": "Contenidor",
+            "es": "Contenedor"
+          },
+          "freeform": {
+            "key": "reciclyng_type"
+          },
+          "mappings": [
+            {
+              "if": {
+                "and": [
+                  "recycling:paper=",
+                  "recycling:beverage_cartons=yes"
+                ]
+              },
+              "then": {
+                "ca": "Contenidor de paper",
+                "es": "Contenedor de papel"
+              }
+            },
+            {
+              "if": {
+                "and": [
+                  "recycling:PET=yes",
+                  "recycling:cans=yes"
+                ]
+              },
+              "then": {
+                "ca": "Contenidor d'envasos",
+                "es": "Contenedor de envases"
+              }
+            },
+            {
+              "if": {
+                "and": [
+                  "recycling:glass_bottles=yes"
+                ]
+              },
+              "then": {
+                "ca": "Contenidor d'envasos de vidre",
+                "es": "Contenedor de envases de vidrio"
+              }
+            },
+            {
+              "if": {
+                "and": [
+                  "recycling:organic=yes"
+                ]
+              },
+              "then": {
+                "ca": "Contenidor de restes d'orgànic",
+                "es": "Contenedor de restos orgánicos"
+              }
+            },
+            {
+              "if": {
+                "and": [
+                  "recycling:waste=yes"
+                ]
+              },
+              "then": {
+                "ca": "Contenidor de rebuig",
+                "es": "Contenedor de rechazo"
+              }
+            },
+            {
+              "if": {
+                "and": [
+                  "recyclin:clothes=yes"
+                ]
+              },
+              "then": {
+                "ca": "Contenidor de roba",
+                "es": "Contenedor de ropa"
+              }
+            }
+          ],
+          "question": {
+            "ca": "De què és el contenidor?",
+            "es": "¿De qué es el contenedor?"
+          },
+          "condition": {
+            "and": []
+          }
+        },
+        {
+          "render": {
+            "ca": "underground",
+            "es": "underground"
+          },
+          "question": {
+            "ca": "Aquest contenidor és soterrat?",
+            "es": "¿Este contenedor está soterrado?"
+          },
+          "freeform": {
+            "key": "location"
+          },
+          "mappings": [
+            {
+              "if": {
+                "and": [
+                  "location=underground"
+                ]
+              },
+              "then": {
+                "ca": "Contenidor soterrat",
+                "es": "Contenedor soterrado"
+              }
+            }
+          ]
+        }
+      ],
+      "hideUnderlayingFeaturesMinPercentage": 0,
+      "icon": {
+        "render": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/general.svg",
+        "mappings": [
+          {
+            "if": {
+              "and": [
+                "recycling:paper=yes"
+              ]
+            },
+            "then": {
+              "ca": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/paper.svg",
+              "es": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/paper.svg"
+            }
+          },
+          {
+            "if": {
+              "and": [
+                "recycling:PET=yes"
+              ]
+            },
+            "then": {
+              "ca": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/envasos.svg",
+              "es": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/envasos.svg"
+            }
+          },
+          {
+            "if": {
+              "and": [
+                "recycling:glass_bottles=yes"
+              ]
+            },
+            "then": {
+              "ca": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/vidre.svg",
+              "es": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/vidre.svg"
+            }
+          },
+          {
+            "if": {
+              "and": [
+                "recycling:waste=yes"
+              ]
+            },
+            "then": {
+              "ca": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/rebuig.svg",
+              "es": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/rebuig.svg"
+            }
+          },
+          {
+            "if": {
+              "and": [
+                "recycling:organic=yes"
+              ]
+            },
+            "then": {
+              "ca": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/organic.svg",
+              "es": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/organic.svg"
+            }
+          },
+          {
+            "if": {
+              "and": [
+                "recycling:clothes=yes"
+              ]
+            },
+            "then": {
+              "ca": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/roba.svg",
+              "es": "https://raw.githubusercontent.com/OSM-Catalan/osmcatmap/master/img/icones_contenidors/roba.svg"
+            }
+          }
+        ],
+        "condition": {
+          "and": []
+        }
+      },
+      "width": {
+        "render": "8"
+      },
+      "iconSize": {
+        "render": "25,25,center"
+      },
+      "color": {
+        "render": "#00f"
+      },
+      "presets": [
+        {
+          "tags": [
+            "amenity=recycling",
+            "recycling_type=container"
+          ],
+          "title": {
+            "ca": "Nou contenidor",
+            "es": "Nuevo contenedor"
+          },
+          "description": {
+            "ca": "Contenidor desconegut",
+            "es": "Contenedor desconocido"
+          }
+        }
+      ],
+      "wayHandling": 1
+    }
+  ],
+  "roamingRenderings": []
+}
