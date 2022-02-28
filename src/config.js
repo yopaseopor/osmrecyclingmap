@@ -192,7 +192,7 @@ var config = {
 
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
-			title: $.i18n('welcome'),
+			title: $i18n('welcome'),
 			query: 'node["recycling:paper"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/paper.svg',
 			iconStyle: 'background-color:#FFFFFF',
