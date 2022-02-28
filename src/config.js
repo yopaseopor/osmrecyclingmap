@@ -60,20 +60,7 @@ var config = {
 			group: 'test',
 			iconSrc: imgSrc + 'osmbw_logo-layer.png',
 			source: new ol.source.XYZ({
-				attributions: '&copy; 			    	<div>
-				      <ul class="lang-picker">
-					        <li id="portuguese">português</li>
-					        <li id="english">english</li>
-					        <li id="spanish">español</li>
-				      </ul>
-			    </div>
-			    <h1 data-i18n="demo.title"></h1>
-			    <p data-i18n="demo.text"></p>
-			    <form>
-				      <input type="text" data-i18n-placeholder="demo.form.name">
-				      <input type="text" data-i18n-placeholder="demo.form.email">
-				      <input type="submit" data-i18n-value="demo.form.submit">
-			    </form><a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a>',
+				attributions: '&copy; <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a>',
 				//url: 'https://toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'
 				url: 'https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
 			}),
