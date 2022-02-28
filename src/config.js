@@ -5,49 +5,7 @@
 
 var imgSrc = 'src/img/';
 
-var userLang = (navigator.language) ? navigator.language : navigator.userLanguage; 
- 
-String.prototype.printf = function() {
-    var formatted = this;
-    for(i=0;i<arguments.length;i++) {
-      formatted = formatted.replace("%s", arguments[i]);
-    }
-    return formatted;
-};
 
-var Translation = {
-    userLang: 'en',
-    getLang: function() {
-        this.userLang = (navigator.language) ? navigator.language : navigator.userLanguage;
-        alert(this.userLang);
-    },
-    strTrans: {
-    'en': {'Open with': 'hello',
-      'layersLabel': 'you name is',
-      'editWith' : 'you have banana',
-                  'tienes platanos' : 'you have bananas',
-      }, 
-    'ca': {'Open with': 'hola',
-      'layersLabel': 'el teu nom es ',
-      'editWith' : 'tens platan',
-                'tienes platanos' : 'tens platans',
-      }, 
-    },
-    getText: function() {
-        var cadena = arguments[0];
-        if (typeof this.strTrans[this.userLang] !== "undefined") {
-            cadena = this.strTrans[this.userLang][cadena];
-        }
-       if(typeof cadena == "undefined") cadena = arguments[0];
-        
-        total = arguments.length;
-        for(i=1;i<total;i++) {
-          valor = arguments[i];
-          cadena = cadena.replace("%s", arguments[i]);
-        }
-        return cadena;
-    }
-};
 
 var config = {
 	initialConfig: {
@@ -59,9 +17,9 @@ var config = {
 		units: 'metric'
 	},
 	i18n: {
-		layersLabel: layersLabel,
+		layersLabel: 'Layers',
 		editWith: 'Edit with:',
-		openWith: 'Open with',
+		openWith: 'Open with:',
 		checkTools: 'Validation:',
 		copyDialog: 'S\'ha copiat l\'enllaç al porta-retalls.Enlace copiado. Link has been copied',
 		nodeLabel: 'Node:',
@@ -470,7 +428,7 @@ var config = {
 		//JOSM editor
 		edit.append($('<a>').css('marginLeft', 5).attr({title: 'JOSM', href: 'https://www.openstreetmap.org/edit?editor=remote&lon=' + coordinateLL[0] + '&lat=' + coordinateLL[1] + '&zoom=' + view.getZoom(), target: '_blank'}).html($('<img>').attr({src: imgSrc + 'JOSM Logotype 2019.svg', height: 20, width: 20})));
 		//Mapcomplete editor
-		edit.append($('<a>').css('marginLeft', 5).attr({title: 'Mapcomplete', href: 'https://mapcomplete.osm.be/index.html?z=' + view.getZoom() +'&lat='+ coordinateLL[1] +'&lon='+ coordinateLL[0] +'&userlayout=https%3A%2F%2Fraw.githubusercontent.com%2Fyopaseopor%2Fmcquests%2Fmain%2Flibraries.json&language=ca#welcome', target: '_blank'}).html($('<img>').attr({src: imgSrc + 'mapcomplete_logo.png', height: 20, width: 20})));
+		edit.append($('<a>').css('marginLeft', 5).attr({title: 'Mapcomplete', href: 'https://mapcomplete.osm.be/index.html?z=' + view.getZoom() +'&lat='+ coordinateLL[1] +'&lon='+ coordinateLL[0] +'&userlayout=https%3A%2F%2Fraw.githubusercontent.com%2Fyopaseopor%2Fmcquests%2Fmain%2Fcontaineronvas.json&language=ca#welcome', target: '_blank'}).html($('<img>').attr({src: imgSrc + 'mapcomplete_logo.png', height: 20, width: 20})));
 
 		var open = $('<div>').html(config.i18n.openWith);
 		//OSM
