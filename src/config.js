@@ -47,7 +47,7 @@ var Translation = {
         }
         return cadena;
     }
-}
+};
 
 var config = {
 	initialConfig: {
