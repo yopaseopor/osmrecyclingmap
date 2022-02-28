@@ -8,8 +8,8 @@ var imgSrc = 'src/img/';
 
 jQuery(function($) {
  $.i18n().load({
- 'en': 'i18n/en.json',
- 'ru': 'i18n/ru.json'
+ 'en': 'src/i18n/en.json',
+ 'ru': 'src/i18n/ru.json'
  }).done(function() {
  $('#welcome').text($.i18n('welcome')); // <—
  });
