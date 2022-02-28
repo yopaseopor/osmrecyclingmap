@@ -26,7 +26,7 @@ var config = {
 		units: 'metric'
 	},
 	i18n: {
-		layersLabel: 'Layers',
+		layersLabel: ($.i18n('welcome'),
 		editWith: 'Edit with:',
 		openWith: 'Open with:',
 		checkTools: 'Validation:',
@@ -192,7 +192,7 @@ var config = {
 
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
-			title: $('welcome').i18n,
+			title: 'Paper/Papel',
 			query: 'node["recycling:paper"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/paper.svg',
 			iconStyle: 'background-color:#FFFFFF',
