@@ -28,7 +28,7 @@ var config = {
 		units: 'metric'
 	},
 	i18n: {
-		layersLabel: 'i18n("Yes")',
+		layersLabel: 'Layers',
 		editWith: 'Edit with:',
 		openWith: 'Open with:',
 		checkTools: 'Validation:',

@@ -1,229 +1,156 @@
-(function() {
-  var Translator, i18n, translator,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+/*
+ *  I18n.js
+ *  =======
+ *
+ *  Simple localization util.
+ *  1. Store your localized labels in json format: `localized-content.json`
+ *  2. Write your markup with key references using `data-i18n` attributes.
+ *  3. Explicitly invoke a traverse key resolver: `i18n.localize()`
+ *     OR
+ *     Change the language, and the contents will be refreshed: `i18n.lang('en')`
+ *
+ *  This util relies on jQuery to work. I would recommend using the latest version
+ *  available (1.12.x or 2.1.4+), although this will probably run with any older
+ *  version since it is only taking advantage of `$.getJSON()` and the jQuery
+ *  selector function `$()`.
+ * 
+ *  © 2016 Diogo Simões - diogosimoes.com
+ *
+ */
 
-  Translator = (function() {
-    function Translator() {
-      this.translate = __bind(this.translate, this);      this.data = {
-        values: {},
-        contexts: []
-      };
-      this.globalContext = {};
-    }
+ var demoJson = {
+	"demo": {
+		"title": {
+			"pt": "Exemplo de uso do i18n.js",
+			"en": "Simple demo for i18n.js",
+			"es": "¡Una cerveza por favor!"
+		},
+		"text": {
+			"pt": "Este exemplo serve apenas para ilustrar os diferentes tipos de atributos de texto que podem ser localizados no cliente com a ajuda do i18n.js",
+			"en": "This demo's only purpose is to show the different text attributes that can be localized with the help of i18n.js",
+			"es": "Si i18n.js era español entonces sería de puta madre. Ahora así, la han cagado!"
+		},
+		"form": {
+			"name": {
+				"pt": "Zé dos Anzóis",
+				"en": "John Doe",
+				"es": "Fulano de Tal"
+			},
+			"email": {
+				"pt": "zeanzois@email.org",
+				"en": "johndoe@email.org",
+				"es": "fulanotal@email.org"
+			},
+			"submit": {
+				"pt": "Enviar",
+				"en": "Send",
+				"es": "¡Tío!"
+			}
+		}
+	}
+};
 
-    Translator.prototype.translate = function(text, defaultNumOrFormatting, numOrFormattingOrContext, formattingOrContext, context) {
-      var defaultText, formatting, isObject, num;
+(function () {
+	this.I18n = function (defaultLang) {
+		var lang = defaultLang || 'en';
+		this.language = lang;
 
-      if (context == null) {
-        context = this.globalContext;
-      }
-      isObject = function(obj) {
-        var type;
+		(function (i18n) {
+			i18n.contents = demoJson;
+			i18n.contents.prop = function (key) {
+				var result = this;
+				var keyArr = key.split('.');
+				for (var index = 0; index < keyArr.length; index++) {
+					var prop = keyArr[index];
+					result = result[prop];
+				}
+				return result;
+			};
+			i18n.localize();
+		})(this);
+	};
 
-        type = typeof obj;
-        return type === "function" || type === "object" && !!obj;
-      };
-      if (isObject(defaultNumOrFormatting)) {
-        defaultText = null;
-        num = null;
-        formatting = defaultNumOrFormatting;
-        context = numOrFormattingOrContext || this.globalContext;
-      } else {
-        if (typeof defaultNumOrFormatting === "number") {
-          defaultText = null;
-          num = defaultNumOrFormatting;
-          formatting = numOrFormattingOrContext;
-          context = formattingOrContext || this.globalContext;
-        } else {
-          defaultText = defaultNumOrFormatting;
-          if (typeof numOrFormattingOrContext === "number") {
-            num = numOrFormattingOrContext;
-            formatting = formattingOrContext;
-            context = context;
-          } else {
-            num = null;
-            formatting = numOrFormattingOrContext;
-            context = formattingOrContext || this.globalContext;
-          }
-        }
-      }
-      if (isObject(text)) {
-        if (isObject(text['i18n'])) {
-          text = text['i18n'];
-        }
-        return this.translateHash(text, context);
-      } else {
-        return this.translateText(text, num, formatting, context, defaultText);
-      }
-    };
+	this.I18n.prototype.hasCachedContents = function () {
+		return this.contents !== undefined;
+	};
 
-    Translator.prototype.add = function(d) {
-      var c, k, v, _i, _len, _ref, _ref1, _results;
+	this.I18n.prototype.lang = function (lang) {
+		if (typeof lang === 'string') {
+			this.language = lang;
+		}
+		this.localize();
+		return this.language;
+	};
 
-      if ((d.values != null)) {
-        _ref = d.values;
-        for (k in _ref) {
-          v = _ref[k];
-          this.data.values[k] = v;
-        }
-      }
-      if ((d.contexts != null)) {
-        _ref1 = d.contexts;
-        _results = [];
-        for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-          c = _ref1[_i];
-          _results.push(this.data.contexts.push(c));
-        }
-        return _results;
-      }
-    };
+	this.I18n.prototype.localize = function () {
+		var contents = this.contents;
+		if (!this.hasCachedContents()) {
+			return;
+		}
+		var dfs = function (node, keys, results) {
+			var isLeaf = function (node) {
+				for (var prop in node) {
+					if (node.hasOwnProperty(prop)) {
+						if (typeof node[prop] === 'string') {
+							return true;
+						}
+					}
+				}
+			}
+			for (var prop in node) {
+				if (node.hasOwnProperty(prop) && typeof node[prop] === 'object') {
+					var myKey = keys.slice();
+					myKey.push(prop);
+					if (isLeaf(node[prop])) {
+						//results.push(myKey.reduce((prev, current) => prev + '.' + current));	//not supported in older mobile broweser
+						results.push(myKey.reduce( function (previousValue, currentValue, currentIndex, array) {
+							return previousValue + '.' + currentValue;
+						}));
+					} else {
+						dfs(node[prop], myKey, results);
+					}
+				}
+			}
+			return results;
+		};
+		var keys = dfs(contents, [], []);
+		for (var index = 0; index < keys.length; index++) {
+			var key = keys[index];
+			if (contents.prop(key).hasOwnProperty(this.language)) {
+				$('[data-i18n="'+key+'"]').text(contents.prop(key)[this.language]);
+				$('[data-i18n-placeholder="'+key+'"]').attr('placeholder', contents.prop(key)[this.language]);
+				$('[data-i18n-value="'+key+'"]').attr('value', contents.prop(key)[this.language]);
+			} else {
+				$('[data-i18n="'+key+'"]').text(contents.prop(key)['en']);
+				$('[data-i18n-placeholder="'+key+'"]').attr('placeholder', contents.prop(key)['en']);
+				$('[data-i18n-value="'+key+'"]').attr('value', contents.prop(key)['en']);
+			}
+		}
+	};
 
-    Translator.prototype.setContext = function(key, value) {
-      return this.globalContext[key] = value;
-    };
+}).apply(window);
 
-    Translator.prototype.clearContext = function(key) {
-      return this.lobalContext[key] = null;
-    };
+$( document ).ready( function () {
 
-    Translator.prototype.reset = function() {
-      this.data = {
-        values: {},
-        contexts: []
-      };
-      return this.globalContext = {};
-    };
+	var i18n = new I18n();
+	i18n.localize();
+	$('.lang-picker #english').addClass('selected');
+	
+	$('.lang-picker #portuguese').on('click', function () {
+		i18n.lang('pt');
+		selectLang($(this));
+	})
+	$('.lang-picker #english').on('click', function () {
+		i18n.lang('en');
+		selectLang($(this));
+	})
+	$('.lang-picker #spanish').on('click', function () {
+		i18n.lang('es');
+		selectLang($(this));
+	})
 
-    Translator.prototype.resetData = function() {
-      return this.data = {
-        values: {},
-        contexts: []
-      };
-    };
-
-    Translator.prototype.resetContext = function() {
-      return this.globalContext = {};
-    };
-
-    Translator.prototype.translateHash = function(hash, context) {
-      var k, v;
-
-      for (k in hash) {
-        v = hash[k];
-        if (typeof v === "string") {
-          hash[k] = this.translateText(v, null, null, context);
-        }
-      }
-      return hash;
-    };
-
-    Translator.prototype.translateText = function(text, num, formatting, context, defaultText) {
-      var contextData, result;
-
-      if (context == null) {
-        context = this.globalContext;
-      }
-      if (this.data == null) {
-        return this.useOriginalText(defaultText || text, num, formatting);
-      }
-      contextData = this.getContextData(this.data, context);
-      if (contextData != null) {
-        result = this.findTranslation(text, num, formatting, contextData.values, defaultText);
-      }
-      if (result == null) {
-        result = this.findTranslation(text, num, formatting, this.data.values, defaultText);
-      }
-      if (result == null) {
-        return this.useOriginalText(defaultText || text, num, formatting);
-      }
-      return result;
-    };
-
-    Translator.prototype.findTranslation = function(text, num, formatting, data) {
-      var result, triple, value, _i, _len;
-
-      value = data[text];
-      if (value == null) {
-        return null;
-      }
-      if (num == null) {
-        if (typeof value === "string") {
-          return this.applyFormatting(value, num, formatting);
-        }
-      } else {
-        if (value instanceof Array || value.length) {
-          for (_i = 0, _len = value.length; _i < _len; _i++) {
-            triple = value[_i];
-            if ((num >= triple[0] || triple[0] === null) && (num <= triple[1] || triple[1] === null)) {
-              result = this.applyFormatting(triple[2].replace("-%n", String(-num)), num, formatting);
-              return this.applyFormatting(result.replace("%n", String(num)), num, formatting);
-            }
-          }
-        }
-      }
-      return null;
-    };
-
-    Translator.prototype.getContextData = function(data, context) {
-      var c, equal, key, value, _i, _len, _ref, _ref1;
-
-      if (data.contexts == null) {
-        return null;
-      }
-      _ref = data.contexts;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        c = _ref[_i];
-        equal = true;
-        _ref1 = c.matches;
-        for (key in _ref1) {
-          value = _ref1[key];
-          equal = equal && value === context[key];
-        }
-        if (equal) {
-          return c;
-        }
-      }
-      return null;
-    };
-
-    Translator.prototype.useOriginalText = function(text, num, formatting) {
-      if (num == null) {
-        return this.applyFormatting(text, num, formatting);
-      }
-      return this.applyFormatting(text.replace("%n", String(num)), num, formatting);
-    };
-
-    Translator.prototype.applyFormatting = function(text, num, formatting) {
-      var ind, regex;
-
-      for (ind in formatting) {
-        regex = new RegExp("%{" + ind + "}", "g");
-        text = text.replace(regex, formatting[ind]);
-      }
-      return text;
-    };
-
-    return Translator;
-
-  })();
-
-  translator = new Translator();
-
-  i18n = translator.translate;
-
-  i18n.translator = translator;
-
-  i18n.create = function(data) {
-    var trans;
-
-    trans = new Translator();
-    if (data != null) {
-      trans.add(data);
-    }
-    trans.translate.create = i18n.create;
-    return trans.translate;
-  };
-
-  (typeof module !== "undefined" && module !== null ? module.exports = i18n : void 0) || (this.i18n = i18n);
-
-}).call(this);
+	function selectLang (picker) {
+		$('.lang-picker li').removeClass('selected');
+		picker.addClass('selected');
+	}
+});
