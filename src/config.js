@@ -192,7 +192,7 @@ var config = {
 
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
-			title: 'Paper/Papel',
+			title: $('#welcome'),
 			query: 'node["recycling:paper"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/paper.svg',
 			iconStyle: 'background-color:#FFFFFF',
@@ -429,7 +429,7 @@ var config = {
 	//Es crida sempre que es fa click sobre el mapa
 	onClickEvent: function(evt, view, coordinateLL) {
 
-		var edit = $('<div>').html(config.i18n.welcome);
+		var edit = $('<div>').html(config.i18n.editWith);
 		//ID editor
 		edit.append($('<a>').css('marginLeft', 5).attr({title: 'iD', href: 'https://www.openstreetmap.org/edit?editor=id&lon=' + coordinateLL[0] + '&lat=' + coordinateLL[1] + '&zoom=' + view.getZoom(), target: '_blank'}).html($('<img>').attr({src: imgSrc + 'ID.svg', height: 20, width: 20})));
 		//Potlatch 2 editor
