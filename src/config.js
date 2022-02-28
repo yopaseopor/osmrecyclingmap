@@ -287,7 +287,7 @@ var config = {
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Rebuig/Rechazo/Waste',
 			query: 'node["recycling:waste"="yes"][!access]({{bbox}});out meta;',
-			iconSrc: imgSrc + 'icones_contenidors_rebuig.svg',
+			iconSrc: imgSrc + 'icones_contenidors/rebuig.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
@@ -365,7 +365,7 @@ var config = {
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Privats/Privado/Private',
 			query: 'node[recycling_type=container][access=private]({{bbox}});out meta;',
-			iconSrc: imgSrc + 'icones_contenidors/privat.svg',
+			iconSrc: imgSrc + 'icones_contenidors/general.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
