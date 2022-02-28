@@ -6,6 +6,17 @@
 var imgSrc = 'src/img/';
 
 
+//  Load the JSON File
+$.ajax("en.json").done(function(text){
+  //  Parse it
+  data = JSON.parse(text);
+  //  Set the data
+  i18n.translator.add(data);
+  //  Translate away
+  i18n("Yes");          // -> はい
+  i18n("No");           // -> いいえ
+})
+
 
 var config = {
 	initialConfig: {
@@ -17,7 +28,7 @@ var config = {
 		units: 'metric'
 	},
 	i18n: {
-		layersLabel: 'Layers',
+		layersLabel: 'i18n("Yes")',
 		editWith: 'Edit with:',
 		openWith: 'Open with:',
 		checkTools: 'Validation:',
