@@ -5,6 +5,50 @@
 
 var imgSrc = 'src/img/';
 
+var userLang = (navigator.language) ? navigator.language : navigator.userLanguage; 
+ 
+String.prototype.printf = function() {
+    var formatted = this;
+    for(i=0;i<arguments.length;i++) {
+      formatted = formatted.replace("%s", arguments[i]);
+    }
+    return formatted;
+};
+
+var Translation = {
+    userLang: 'es',
+    getLang: function() {
+        this.userLang = (navigator.language) ? navigator.language : navigator.userLanguage;
+        alert(this.userLang);
+    },
+    strTrans: {
+    'en': {'Open with': 'hello',
+      'layersLabel': 'you name is %s',
+      'editWith' : 'you have %s banana',
+                  'tienes %s platanos' : 'you have %s bananas',
+      }, 
+    'ca': {'Open with': 'hola',
+      'layersLabel': 'el teu nom es %s',
+      'editWith' : 'tens %s platan',
+                'tienes %s platanos' : 'tens %s platans',
+      }, 
+    },
+    getText: function() {
+        var cadena = arguments[0];
+        if (typeof this.strTrans[this.userLang] !== "undefined") {
+            cadena = this.strTrans[this.userLang][cadena];
+        }
+       if(typeof cadena == "undefined") cadena = arguments[0];
+        
+        total = arguments.length;
+        for(i=1;i<total;i++) {
+          valor = arguments[i];
+          cadena = cadena.replace("%s", arguments[i]);
+        }
+        return cadena;
+    }
+}
+
 var config = {
 	initialConfig: {
 		lon: 1.59647,
@@ -15,9 +59,9 @@ var config = {
 		units: 'metric'
 	},
 	i18n: {
-		layersLabel: 'Layers',
-		editWith: 'Edit with:',
-		openWith: 'Open with:',
+		layersLabel: layersLabel,
+		editWith: editWith,
+		openWith: openWith,
 		checkTools: 'Validation:',
 		copyDialog: 'S\'ha copiat l\'enllaç al porta-retalls.Enlace copiado. Link has been copied',
 		nodeLabel: 'Node:',
@@ -363,6 +407,32 @@ var config = {
 		},
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
+			title: 'Roba/Ropa/Clothes',
+			query: 'node["recycling:clothes"="yes"][!access]({{bbox}});out meta;',
+			iconSrc: imgSrc + 'icones_contenidors/roba.svg',
+			iconStyle: 'background-color:#FFFFFF',
+			style: function () {
+				var fill = new ol.style.Fill({
+					color: 'rgba(106,90,205,0.4)'
+				});
+				var stroke = new ol.style.Stroke({
+					color: '#6A5ACD',
+					width: 1.25
+				});
+				var style = new ol.style.Style({
+					image: new ol.style.Circle({
+						fill: fill,
+						stroke: stroke,
+						radius: 5
+					}),
+					fill: fill,
+					stroke: stroke
+				});
+				return style;
+			}
+		},
+		{
+			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Privats/Privado/Private',
 			query: 'node[recycling_type=container][access=private]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/general.svg',
@@ -399,6 +469,8 @@ var config = {
 		edit.append($('<a>').css('marginLeft', 5).attr({title: 'Potlatch 2', href: 'https://www.openstreetmap.org/edit?editor=potlatch2&lon=' + coordinateLL[0] + '&lat=' + coordinateLL[1] + '&zoom=' + view.getZoom(), target: '_blank'}).html($('<img>').attr({src: imgSrc + 'potlatch2logobig.png', height: 20, width: 20})));
 		//JOSM editor
 		edit.append($('<a>').css('marginLeft', 5).attr({title: 'JOSM', href: 'https://www.openstreetmap.org/edit?editor=remote&lon=' + coordinateLL[0] + '&lat=' + coordinateLL[1] + '&zoom=' + view.getZoom(), target: '_blank'}).html($('<img>').attr({src: imgSrc + 'JOSM Logotype 2019.svg', height: 20, width: 20})));
+		//Mapcomplete editor
+		edit.append($('<a>').css('marginLeft', 5).attr({title: 'Mapcomplete', href: 'https://mapcomplete.osm.be/index.html?z=' + view.getZoom() +'&lat='+ coordinateLL[1] +'&lon='+ coordinateLL[0] +'&userlayout=https%3A%2F%2Fraw.githubusercontent.com%2Fyopaseopor%2Fmcquests%2Fmain%2Flibraries.json&language=ca#welcome', target: '_blank'}).html($('<img>').attr({src: imgSrc + 'mapcomplete_logo.png', height: 20, width: 20})));
 
 		var open = $('<div>').html(config.i18n.openWith);
 		//OSM
