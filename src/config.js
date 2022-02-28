@@ -16,7 +16,7 @@ String.prototype.printf = function() {
 };
 
 var Translation = {
-    userLang: 'es',
+    userLang: 'en',
     getLang: function() {
         this.userLang = (navigator.language) ? navigator.language : navigator.userLanguage;
         alert(this.userLang);
@@ -59,9 +59,9 @@ var config = {
 		units: 'metric'
 	},
 	i18n: {
-		layersLabel: layersLabel,
-		editWith: editWith,
-		openWith: openWith,
+		layersLabel: 'Layers',
+		editWith: 'Edit with:',
+		openWith: 'Open with',
 		checkTools: 'Validation:',
 		copyDialog: 'S\'ha copiat l\'enllaç al porta-retalls.Enlace copiado. Link has been copied',
 		nodeLabel: 'Node:',
