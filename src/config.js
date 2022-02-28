@@ -23,14 +23,14 @@ var Translation = {
     },
     strTrans: {
     'en': {'Open with': 'hello',
-      'layersLabel': 'you name is %s',
-      'editWith' : 'you have %s banana',
-                  'tienes %s platanos' : 'you have %s bananas',
+      'layersLabel': 'you name is',
+      'editWith' : 'you have banana',
+                  'tienes platanos' : 'you have bananas',
       }, 
     'ca': {'Open with': 'hola',
-      'layersLabel': 'el teu nom es %s',
-      'editWith' : 'tens %s platan',
-                'tienes %s platanos' : 'tens %s platans',
+      'layersLabel': 'el teu nom es ',
+      'editWith' : 'tens platan',
+                'tienes platanos' : 'tens platans',
       }, 
     },
     getText: function() {
@@ -59,7 +59,7 @@ var config = {
 		units: 'metric'
 	},
 	i18n: {
-		layersLabel: 'Layers',
+		layersLabel: layersLabel,
 		editWith: 'Edit with:',
 		openWith: 'Open with',
 		checkTools: 'Validation:',
