@@ -184,7 +184,7 @@ var config = {
 			title: 'Paper/Papel',
 			query: 'node["recycling:paper"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/paper.svg',
-			iconStyle: 'background-color:#0000FF',
+			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
 					color: 'rgba(0,0,255,0.4)'
@@ -209,8 +209,8 @@ var config = {
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Vidre/Vidrio/Glass bottles',
 			query: 'node["recycling:glass_bottles"="yes"][!access]({{bbox}});out meta;',
-			iconSrc: imgSrc + 'base/icones_contenidors/vidre.svg',
-			iconStyle: 'background-color:#00FF00',
+			iconSrc: imgSrc + 'icones_contenidors/vidre.svg',
+			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
 					color: 'rgba(0,255,0,0.4)'
@@ -236,7 +236,7 @@ var config = {
 			title: 'Envasos/Envases/Cans',
 			query: 'node["recycling:cans"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/envasos.svg',
-			iconStyle: 'background-color:#FFFF00',
+			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
 					color: 'rgba(255,255,0,0.4)'
@@ -262,7 +262,7 @@ var config = {
 			title: 'Orgànic/Orgánico',
 			query: 'node["recycling:organic"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/organic.svg',
-			iconStyle: 'background-color:#A52A2A',
+			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
 					color: 'rgba(165,42,42,0.4)'
@@ -287,8 +287,8 @@ var config = {
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Rebuig/Rechazo/Waste',
 			query: 'node["recycling:waste"="yes"][!access]({{bbox}});out meta;',
-			iconSrc: imgSrc + 'base/icones_contenidors_rebuig.svg',
-			iconStyle: 'background-color:#000000',
+			iconSrc: imgSrc + 'icones_contenidors_rebuig.svg',
+			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
 					color: 'rgba(0,0,0,0.4)'
@@ -313,8 +313,8 @@ var config = {
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Piles/Pilas/Batteries',
 			query: 'node["recycling:batteries"="yes"][!access]({{bbox}});out meta;',
-			iconSrc: imgSrc + 'base/icones_contenidors/piles.svg',
-			iconStyle: 'background-color:#FF0000',
+			iconSrc: imgSrc + 'icones_contenidors/piles.svg',
+			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
 					color: 'rgba(255,0,0,0.4)'
@@ -340,7 +340,7 @@ var config = {
 			title: 'Oli/Aceite/Cooking oil',
 			query: 'node["recycling:cooking_oil"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/oli.svg',
-			iconStyle: 'background-color:#6A5ACD',
+			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
 					color: 'rgba(106,90,205,0.4)'
@@ -365,8 +365,8 @@ var config = {
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Privats/Privado/Private',
 			query: 'node[recycling_type=container][access=private]({{bbox}});out meta;',
-			iconSrc: imgSrc + 'icones_contenidors/general.svg',
-			iconStyle: 'background-color:#808080',
+			iconSrc: imgSrc + 'icones_contenidors/privat.svg',
+			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
 					color: 'rgba(128,128,128,0.4)'
