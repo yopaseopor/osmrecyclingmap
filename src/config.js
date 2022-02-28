@@ -179,105 +179,130 @@ var config = {
 	overlays: [
 
 
-
-		
-				
-		
 		{
-			group: 'Percep',
-			title: 'No hi ha llum',
-			query: '(node["lit:perceived"="none"]({{bbox}}););out meta;',
-			iconSrc: imgSrc + 'icones_llum/lit_osm_none.svg',
-			iconStyle: 'background-color:#FFFFFF',
-						scale: 1,
+			group: 'Reciclatge/Reciclaje/Recycling',
+			title: 'Paper/Papel',
+			query: 'node["recycling:paper"="yes"][!access]({{bbox}});out meta;',
+			iconSrc: imgSrc + 'base/circle.svg',
+			iconStyle: 'background-color:#0000FF',
 			style: function () {
+				var fill = new ol.style.Fill({
+					color: 'rgba(0,0,255,0.4)'
+				});
+				var stroke = new ol.style.Stroke({
+					color: '#0000FF',
+					width: 1.25
+				});
 				var style = new ol.style.Style({
-					image: new ol.style.Icon({
-						src: imgSrc + 'icones_llum/lit_osm_none.svg'
-					})
+					image: new ol.style.Circle({
+						fill: fill,
+						stroke: stroke,
+						radius: 5
+					}),
+					fill: fill,
+					stroke: stroke
 				});
 				return style;
 			}
 		},
 		{
-			group: 'Percep',
-			title: 'Llum mínima',
-			query: '(node["lit:perceived"="minimal"]({{bbox}}););out meta;',
-			iconSrc: imgSrc + 'icones_llum/lit_osm_minimal.svg',
-			iconStyle: 'background-color:#FFFFFF',
-						scale: 1,
+			group: 'Reciclatge/Reciclaje/Recycling',
+			title: 'Vidre/Vidrio/Glass bottles',
+			query: 'node["recycling:glass_bottles"="yes"][!access]({{bbox}});out meta;',
+			iconSrc: imgSrc + 'base/circle.svg',
+			iconStyle: 'background-color:#00FF00',
 			style: function () {
+				var fill = new ol.style.Fill({
+					color: 'rgba(0,255,0,0.4)'
+				});
+				var stroke = new ol.style.Stroke({
+					color: '#00FF00',
+					width: 1.25
+				});
 				var style = new ol.style.Style({
-					image: new ol.style.Icon({
-						src: imgSrc + 'icones_llum/lit_osm_minimal.svg'
-					})
+					image: new ol.style.Circle({
+						fill: fill,
+						stroke: stroke,
+						radius: 5
+					}),
+					fill: fill,
+					stroke: stroke
 				});
 				return style;
 			}
 		},
 		{
-			group: 'Percep',
-			title: 'Llum pobra',
-			query: '(node["lit:perceived"="poor"]({{bbox}}););out meta;',
-			iconSrc: imgSrc + 'icones_llum/lit_osm_poor.svg',
-			iconStyle: 'background-color:#FFFFFF',
-						scale: 1,
+			group: 'Reciclatge/Reciclaje/Recycling',
+			title: 'Envasos/Envases/Cans',
+			query: 'node["recycling:cans"="yes"][!access]({{bbox}});out meta;',
+			iconSrc: imgSrc + 'base/circle.svg',
+			iconStyle: 'background-color:#FFFF00',
 			style: function () {
+				var fill = new ol.style.Fill({
+					color: 'rgba(255,255,0,0.4)'
+				});
+				var stroke = new ol.style.Stroke({
+					color: '#FFFF00',
+					width: 1.25
+				});
 				var style = new ol.style.Style({
-					image: new ol.style.Icon({
-						src: imgSrc + 'icones_llum/lit_osm_poor.svg'
-					})
+					image: new ol.style.Circle({
+						fill: fill,
+						stroke: stroke,
+						radius: 5
+					}),
+					fill: fill,
+					stroke: stroke
 				});
 				return style;
 			}
 		},
 		{
-			group: 'Percep',
-			title: 'Bona llum',
-			query: '(node["lit:perceived"="good"]({{bbox}}););out meta;',
-			iconSrc: imgSrc + 'icones_llum/lit_osm_good.svg',
-			iconStyle: 'background-color:#FFFFFF',
-						scale: 1,
+			group: 'Reciclatge/Reciclaje/Recycling',
+			title: 'Orgànic/Orgánico',
+			query: 'node["recycling:organic"="yes"][!access]({{bbox}});out meta;',
+			iconSrc: imgSrc + 'base/circle.svg',
+			iconStyle: 'background-color:#A52A2A',
 			style: function () {
+				var fill = new ol.style.Fill({
+					color: 'rgba(165,42,42,0.4)'
+				});
+				var stroke = new ol.style.Stroke({
+					color: '#A52A2A',
+					width: 1.25
+				});
 				var style = new ol.style.Style({
-					image: new ol.style.Icon({
-						src: imgSrc + 'icones_llum/lit_osm_good.svg'
-					})
+					image: new ol.style.Circle({
+						fill: fill,
+						stroke: stroke,
+						radius: 5
+					}),
+					fill: fill,
+					stroke: stroke
 				});
 				return style;
 			}
 		},
 		{
-			group: 'Percep',
-			title: 'Com si fos de dia',
-			query: '(node["lit:perceived"="daylike"]({{bbox}}););out meta;',
-			iconSrc: imgSrc + 'icones_llum/lit_osm_daylike.svg',
-			iconStyle: 'background-color:#FFFFFF',
-						scale: 1,
-			style: function () {
-				var style = new ol.style.Style({
-					image: new ol.style.Icon({
-						src: imgSrc + 'icones_llum/lit_osm_daylike.svg'
-					})
-				});
-				return style;
-			}
-		},
-		{
-			group: 'Percep',
-			title: 'No hi ha llum (via)',
-			query: '(way[highway]["lit:perceived"="none"]({{bbox}});node(w););out;',
-			iconSrc: imgSrc + 'base/dots.png',
+			group: 'Reciclatge/Reciclaje/Recycling',
+			title: 'Rebuig/Rechazo/Waste',
+			query: 'node["recycling:waste"="yes"][!access]({{bbox}});out meta;',
+			iconSrc: imgSrc + 'base/circle.svg',
 			iconStyle: 'background-color:#000000',
 			style: function () {
 				var fill = new ol.style.Fill({
 					color: 'rgba(0,0,0,0.4)'
 				});
 				var stroke = new ol.style.Stroke({
-					color: 'rgba(0,0,0,0.4)',
-					width: 5
+					color: '#000000',
+					width: 1.25
 				});
 				var style = new ol.style.Style({
+					image: new ol.style.Circle({
+						fill: fill,
+						stroke: stroke,
+						radius: 5
+					}),
 					fill: fill,
 					stroke: stroke
 				});
@@ -285,154 +310,82 @@ var config = {
 			}
 		},
 		{
-			group: 'Percep',
-			title: 'Llum mínima (via)',
-			query: '(way[highway]["lit:perceived"="minimal"]({{bbox}});node(w););out;',
-			iconSrc: imgSrc + 'base/tdot.png',
-			iconStyle: 'background-color:#394b3e',
-			style: function () {
-				var fill = new ol.style.Fill({
-					color: 'rgba(57,128,78,0.4)'
-				});
-				var stroke = new ol.style.Stroke({
-					color: 'rgba(57,128,78,0.4)',
-					width: 5,
-					lineDash: [4,8],
-					lineDashOffset: 6
-				});
-				var style = new ol.style.Style({
-					fill: fill,
-					stroke: stroke
-				});
-				return style;
-			}
-		},
-		{
-			group: 'Percep',
-			title: 'Llum pobra (via)',
-			query: '(way[highway]["lit:perceived"="poor"]({{bbox}});node(w););out;',
-			iconSrc: imgSrc + 'base/tdot2.png',
-			iconStyle: 'background-color:#39804e',
-			style: function () {
-				var fill = new ol.style.Fill({
-					color: 'rgba(57,75,62,0.4)'
-				});
-				var stroke = new ol.style.Stroke({
-					color: 'rgba(57,75,62,0.4)',
-					width: 5
-				});
-				var style = new ol.style.Style({
-					fill: fill,
-					stroke: stroke
-				});
-				return style;
-			}
-		},
-		{
-			group: 'Percep',
-			title: 'Llum bona (via)',
-			query: '(way[highway]["lit:perceived"="good"]({{bbox}});node(w););out;',
-			iconSrc: imgSrc + 'base/lineline.png',
-			iconStyle: 'background-color:#2bc95b',
-			style: function () {
-				var fill = new ol.style.Fill({
-					color: 'rgba(43,201,91,0.4)'
-				});
-				var stroke = new ol.style.Stroke({
-					color: 'rgba(43,201,91,0.4)',
-					width: 5
-				});
-				var style = new ol.style.Style({
-					fill: fill,
-					stroke: stroke
-				});
-				return style;
-			}
-		},
-		{
-			group: 'Percep',
-			title: 'Com si fos de dia (via)',
-			query: '(way[highway]["lit:perceived"="daylike"]({{bbox}});node(w););out;',
-			iconSrc: imgSrc + 'base/line.png',
-			iconStyle: 'background-color:#00ff4d',
-			style: function () {
-				var fill = new ol.style.Fill({
-					color: 'rgba(0,255,77,0.4)'
-				});
-				var stroke = new ol.style.Stroke({
-					color: 'rgba(0,255,77,0.4)',
-					width: 5
-				});
-				var style = new ol.style.Style({
-					fill: fill,
-					stroke: stroke
-				});
-				return style;
-			}
-		},
-		{
-			group: 'Enllumenat',
-			title: 'Enllumenat sí',
-			query: '(way[highway][lit=yes]({{bbox}});node(w););out;',
-			iconSrc: imgSrc + 'base/line.png',
-			iconStyle: 'background-color:#229954',
-			style: function () {
-				var fill = new ol.style.Fill({
-					color: 'rgba(34,153,84,0.4)'
-				});
-				var stroke = new ol.style.Stroke({
-					color: 'rgba(34,153,84,0.4)',
-					width: 5
-				});
-				var style = new ol.style.Style({
-					fill: fill,
-					stroke: stroke
-				});
-				return style;
-			}
-		},
-		{
-			group: 'Enllumenat',
-			title: 'Enllumenat no',
-			query: '(way[highway][lit=no]({{bbox}});node(w););out;',
-			iconSrc: imgSrc + 'base/line.png',
-			iconStyle: 'background-color:#000000',
-			style: function () {
-				var fill = new ol.style.Fill({
-					color: 'rgba(0,0,0,0.4)'
-				});
-				var stroke = new ol.style.Stroke({
-					color: 'rgba(0,0,0,0.4)',
-					width: 5
-				});
-				var style = new ol.style.Style({
-					fill: fill,
-					stroke: stroke
-				});
-				return style;
-			}
-		},
-		{
-			group: 'Enllumenat',
-			title: 'Sense dades',
-			query: '(way[highway][!lit]({{bbox}});node(w););out;',
-			iconSrc: imgSrc + 'base/line.png',
+			group: 'Reciclatge/Reciclaje/Recycling',
+			title: 'Piles/Pilas/Batteries',
+			query: 'node["recycling:batteries"="yes"][!access]({{bbox}});out meta;',
+			iconSrc: imgSrc + 'base/circle.svg',
 			iconStyle: 'background-color:#FF0000',
 			style: function () {
 				var fill = new ol.style.Fill({
-					color: 'rgba(255,51,51,0.4)'
+					color: 'rgba(255,0,0,0.4)'
 				});
 				var stroke = new ol.style.Stroke({
-					color: 'rgba(255,51,51,0.4)',
-					width: 5
+					color: '#FF0000',
+					width: 1.25
 				});
 				var style = new ol.style.Style({
+					image: new ol.style.Circle({
+						fill: fill,
+						stroke: stroke,
+						radius: 5
+					}),
 					fill: fill,
 					stroke: stroke
 				});
 				return style;
 			}
-			
+		},
+		{
+			group: 'Reciclatge/Reciclaje/Recycling',
+			title: 'Oli/Aceite/Cooking oil',
+			query: 'node["recycling:cooking_oil"="yes"][!access]({{bbox}});out meta;',
+			iconSrc: imgSrc + 'base/circle.svg',
+			iconStyle: 'background-color:#6A5ACD',
+			style: function () {
+				var fill = new ol.style.Fill({
+					color: 'rgba(106,90,205,0.4)'
+				});
+				var stroke = new ol.style.Stroke({
+					color: '#6A5ACD',
+					width: 1.25
+				});
+				var style = new ol.style.Style({
+					image: new ol.style.Circle({
+						fill: fill,
+						stroke: stroke,
+						radius: 5
+					}),
+					fill: fill,
+					stroke: stroke
+				});
+				return style;
+			}
+		},
+		{
+			group: 'Reciclatge/Reciclaje/Recycling',
+			title: 'Privats/Privado/Private',
+			query: 'node[recycling_type=container][access=private]({{bbox}});out meta;',
+			iconSrc: imgSrc + 'base/circle.svg',
+			iconStyle: 'background-color:#808080',
+			style: function () {
+				var fill = new ol.style.Fill({
+					color: 'rgba(128,128,128,0.4)'
+				});
+				var stroke = new ol.style.Stroke({
+					color: '#808080',
+					width: 1.25
+				});
+				var style = new ol.style.Style({
+					image: new ol.style.Circle({
+						fill: fill,
+						stroke: stroke,
+						radius: 5
+					}),
+					fill: fill,
+					stroke: stroke
+				});
+				return style;
+			}
 		}
 	],
 
