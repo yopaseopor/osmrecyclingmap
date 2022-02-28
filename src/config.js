@@ -194,7 +194,7 @@ var config = {
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: $('#welcome').i18n,
 			query: 'node["recycling:paper"="yes"][!access]({{bbox}});out meta;',
-			iconSrc: imgSrc + 'icones_contenidors/paper.svg',
+			iconSrc: imgSrc + 'icones_contenidors/paper.sv',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
 				var fill = new ol.style.Fill({
