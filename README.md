@@ -22,6 +22,8 @@ En aquest cas utilitzarem les claus:
 
 -Consultes complexes afegides per [Ismael Luceno](https://github.com/ismaell)
 
+-Idees addicionals per [yopaseopor](https://github.com/yopaseopor)
+
 El mapa ens permet la mostra d'elements determinats personalitzables tenint com a fons varis mapes diferents.
 
 Directament es pot modificar la pàgina editant els arxius corresponents:
