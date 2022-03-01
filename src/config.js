@@ -26,7 +26,7 @@ var config = {
 		units: 'metric'
 	},
 	i18n: {
-		layersLabel: $('#welcome'),
+		layersLabel: $i18n.welcome,
 		editWith: 'Edit with:',
 		openWith: 'Open with:',
 		checkTools: 'Validation:',
