@@ -193,7 +193,7 @@ var config = {
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Paper/Papel',
-			query: 'node["recycling:paper"="yes"][!access]({{bbox}});out meta;',
+			query: 'nwr["recycling:paper"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/paper.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
@@ -219,7 +219,7 @@ var config = {
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Vidre/Vidrio/Glass bottles',
-			query: 'node["recycling:glass_bottles"="yes"][!access]({{bbox}});out meta;',
+			query: 'nwr["recycling:glass_bottles"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/vidre.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
@@ -245,7 +245,7 @@ var config = {
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Envasos/Envases/Cans',
-			query: 'node["recycling:cans"="yes"][!access]({{bbox}});out meta;',
+			query: 'nwr["recycling:cans"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/envasos.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
@@ -271,7 +271,7 @@ var config = {
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Orgànic/Orgánico',
-			query: 'node["recycling:organic"="yes"][!access]({{bbox}});out meta;',
+			query: 'nwr["recycling:organic"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/organic.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
@@ -297,7 +297,7 @@ var config = {
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Rebuig/Rechazo/Waste',
-			query: 'node["recycling:waste"="yes"][!access]({{bbox}});out meta;',
+			query: 'nwr["recycling:waste"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/rebuig.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
@@ -323,7 +323,7 @@ var config = {
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Piles/Pilas/Batteries',
-			query: 'node["recycling:batteries"="yes"][!access]({{bbox}});out meta;',
+			query: 'nwr["recycling:batteries"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/piles.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
@@ -349,7 +349,7 @@ var config = {
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Oli/Aceite/Cooking oil',
-			query: 'node["recycling:cooking_oil"="yes"][!access]({{bbox}});out meta;',
+			query: 'nwr["recycling:cooking_oil"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/oli.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
@@ -375,7 +375,7 @@ var config = {
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Roba/Ropa/Clothes',
-			query: 'node["recycling:clothes"="yes"][!access]({{bbox}});out meta;',
+			query: 'nwr["recycling:clothes"="yes"][!access]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/roba.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
@@ -401,7 +401,7 @@ var config = {
 		{
 			group: 'Reciclatge/Reciclaje/Recycling',
 			title: 'Privats/Privado/Private',
-			query: 'node[recycling_type=container][access=private]({{bbox}});out meta;',
+			query: 'nwr["recycling_type"="container"][access=private]({{bbox}});out meta;',
 			iconSrc: imgSrc + 'icones_contenidors/general.svg',
 			iconStyle: 'background-color:#FFFFFF',
 			style: function () {
